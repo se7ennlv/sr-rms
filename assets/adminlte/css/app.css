@@ -1,0 +1,10 @@
+.help-block{
+    display: none;
+}
+.box-rpt{
+    cursor: pointer;
+}
+.panel-body:hover{
+    background-color: #ddd;
+    border-color: #ddd;
+}
