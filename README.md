@@ -1,2 +1,2 @@
 # SR-RMS
-SR-Reprot Management System
+SR-Report Management System
