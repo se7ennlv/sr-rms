@@ -13,7 +13,7 @@ $station = $_POST['station'];
 </div> 
 <table id="myTable"
        data-toggle="table"
-       data-url="./controllers/json_tran_data.php?fromDate=<?= $fromDate; ?>&toDate=<?= $toDate; ?>&station=<?= $station; ?>"
+       data-url="./controllers/json_raw_data.php?fromDate=<?= $fromDate; ?>&toDate=<?= $toDate; ?>&station=<?= $station; ?>"
        data-pagination="true"
        data-page-size="25"
        data-click-to-select="true"
@@ -29,19 +29,19 @@ $station = $_POST['station'];
             <th colspan="8" data-align="left"><strong>Savan Legend Resorts sole  Company Limited.</strong></th>
         </tr>
         <tr>
-            <th colspan="8" data-align="left"><strong><?= $station; ?> (Transaction Report)</strong></th>
+            <th colspan="8" data-align="left"><strong><?= $station; ?> (Raw Data)</strong></th>
         </tr>
         <tr>
             <th colspan="8" data-align="left"><strong><?= $fromDate; ?> - <?= $toDate; ?></strong></th>
         </tr>
         <tr>
-            <th data-field="Period_Title" data-sortable="true">Period Title</th>
-            <th data-field="station" data-sortable="true">Station</th>
-            <th data-field="Department" data-sortable="true">Department</th>
-            <th data-field="ID" data-sortable="true">Emp ID</th>
-            <th data-field="Name" data-sortable="true">Emp Name</th>
-            <th data-field="Datetime" data-sortable="true">Date</th>
-            <th data-field="Time" data-sortable="true">Time</th>
+            <th data-field="Station" data-sortable="true" class="text-center">Station</th>
+            <th data-field="Dept" data-sortable="true" class="text-center">Department</th>
+            <th data-field="EmpID" data-sortable="true" class="text-center">Emp ID</th>
+            <th data-field="EmpName" data-sortable="true" class="text-center">Emp Name</th>
+            <th data-field="Dates" data-sortable="true" class="text-center">Date</th>
+            <th data-field="Times" data-sortable="true" class="text-center">Time</th>
+            <th data-field="Periods" data-sortable="true" class="text-center">Periods</th>
         </tr>
     </thead>
 </table>
@@ -50,7 +50,7 @@ $station = $_POST['station'];
     function getCurDate() {
         var now = new Date();
         var today = now.format("isoDateTime");
-        return 'TransactionReport_' + today;
+        return 'raw_data_report_' + today;
     }
 
     var $table = $('#table');
@@ -68,13 +68,11 @@ $station = $_POST['station'];
     });
 
     $table = $('#myTable').bootstrapTable({
-        exportTypes: ['excel', 'csv'],
         showExport: true,
+        exportTypes: ['excel', 'csv'],
         exportOptions: {
             fileName: getCurDate()
-
         }
     });
-
 </script>
 

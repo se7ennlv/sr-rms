@@ -19,7 +19,7 @@
             <div class="content-wrapper" id="mainContent">
                 <section class="content-header">
                     <h1>
-                        Reports Management System
+                        Reports Management System 
                     </h1>
                 </section>
 

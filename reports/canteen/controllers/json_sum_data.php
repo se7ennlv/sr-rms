@@ -9,12 +9,11 @@ try {
     $toDate = $_GET['toDate'];
     $station = $_GET['station'];
 
-    $sql = "SELECT COUNT(*) AS countRows, Department, Period_Title
-            FROM [ZSAsscess].[dbo].[CanteenData]
-            WHERE Station LIKE '{$station}' 
-            AND [Datetime] BETWEEN CONVERT(DATE,'{$fromDate}')  AND CONVERT(DATE,'{$toDate}')
-            GROUP BY Department, Period_Title
-            ORDER BY Department ASC ";
+    $sql = "SELECT Dept, Periods,  COUNT(EmpID) AS Total 
+            FROM CanteenRawData
+            WHERE Dates BETWEEN '{$fromDate}' AND '{$toDate}' AND Station = '{$station}'
+            GROUP BY Dept, Periods
+            ORDER BY Dept, Periods";
     $stmt = $fp_connect->prepare($sql);
     $stmt->execute();
 

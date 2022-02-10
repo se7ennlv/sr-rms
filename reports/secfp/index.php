@@ -10,7 +10,7 @@ try {
     $stmt->execute();
 
     $group_id =  $_GET['group_id'];
-    $sql1 = "SELECT * FROM dbo.ReportModules WHERE RGroupID = '{$group_id}' AND RMStatus = 1";
+    $sql1 = "SELECT * FROM dbo.ReportModules WHERE RGroupID = '{$group_id}' AND RMIsActive = 1";
     $stmt1 = $rms_connect->prepare($sql1);
     $stmt1->execute();
     $dataArray = array();
@@ -83,7 +83,7 @@ $fp_connect = NULL;
                                                     foreach ($dataArray as $menu) { ?>
                                                         <?php foreach ($users as $user) { ?>
                                                             <?php if ($menu['RMID'] == $user) { ?>
-                                                                <button type="button" class="btn btn-custom" id="<?= $menu['RMAction']; ?>"><i class="fa fa-bars"></i> <?= $menu['RMName']; ?> </button>
+                                                                <button type="button" class="<?= $menu['RMBtnClass']; ?>" id="<?= $menu['RMAction']; ?>"><i class="fa fa-bars"></i> <?= $menu['RMName']; ?> </button>
                                                             <?php } ?>
                                                     <?php }
                                                     } ?>
@@ -112,10 +112,3 @@ $fp_connect = NULL;
 </body>
 
 </html>
-<style>
-    .btn-custom {
-        background-color: #ffffff;
-        color: #444;
-        border-color: #00a65a;
-    }
-</style>

@@ -52,7 +52,7 @@ try {
                                                     </select>
                                                 </div>
                                                 <div class="form-group">
-                                                    <button type="button" class="btn btn-success" onclick="SuccessAction()" data-toggle="tooltip" data-placement="bottom" title="Passed"> Sreach <i class="fa fa-search"></i></button>
+                                                    <button type="button" class="btn btn-default" onclick="SuccessAction()"> Search <i class="<?= $menu['RMIcon']; ?>"></i></button>
                                                 </div>
                                         </form>
                                     </div>

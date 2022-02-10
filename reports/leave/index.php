@@ -1,10 +1,10 @@
-<?php 
-include '../../config/session.php'; 
+<?php
+include '../../config/session.php';
 include '../../config/db.php';
 
 $group_id =  $_GET['group_id'];
 
-$sql1 = "SELECT * FROM dbo.ReportModules WHERE RGroupID = '{$group_id}' AND RMIsActive = 1";
+$sql1 = "SELECT * FROM dbo.ReportModules WHERE RGroupID = '3' AND RMIsActive = 1 ORDER BY RMBtnDataPlacement ";
 $stmt1 = $rms_connect->prepare($sql1);
 $stmt1->execute();
 $dataArray = array();
@@ -44,15 +44,14 @@ while ($row = $stmt1->fetch(PDO::FETCH_ASSOC)) {
                         <div class="box box-success">
                             <div class="box-header with-border">
                                 <div class="row">
-                                    <div class="col-md-8">
+                                    <div class="col-md-12">
                                         <?php
                                         $users =  explode(",", $_SESSION['roleModules']);
                                         foreach ($dataArray as $menu) { ?>
                                             <?php foreach ($users as $user) { ?>
                                                 <?php if ($menu['RMID'] == $user) { ?>
-
-                                                    <button type="button" class="btn btn-custom" data-toggle="modal" data-target="<?= $menu['RMAction']; ?>"><?= $menu['RMName']; ?> </button>
-                                                    <!-- <button type="button" class="btn btn-primary btn-sm" id="<?= $menu['RMAction']; ?>"><i class="fa fa-search"></i> <?= $menu['RMName']; ?> </button> -->
+                                                    <button type="button" data-toggle="<?= $menu['RMBtnDataToggle']; ?>" data-placement="<?= $menu['RMBtnDataPlacement']; ?>" title="<?= $menu['RMBtnTitle']; ?>" class="<?= $menu['RMBtnClass']; ?>" data-target="<?= $menu['RMAction']; ?>"><i class="<?= $menu['RMIcon']; ?>"></i> <?= $menu['RMName']; ?>
+                                                    </button>
                                                 <?php } ?>
                                         <?php }
                                         } ?>
@@ -90,7 +89,7 @@ while ($row = $stmt1->fetch(PDO::FETCH_ASSOC)) {
                 <strong>Developed by IT</strong>
             </div>
 
-            <strong><a href="#">(Version.1.0.2)</a></strong>
+            <strong><a href="#">(Version.1.0.3)</a></strong>
         </footer>
     </div>
 
@@ -99,6 +98,7 @@ while ($row = $stmt1->fetch(PDO::FETCH_ASSOC)) {
     <?php include 'modals/modal_by_emp.php' ?>
     <?php include 'modals/modal_by_dept.php' ?>
     <?php include 'modals/modal_spl_update.php' ?>
+    <?php include 'modals/modal_al_update.php' ?>
     <?php include 'modals/modal_search_roster.php' ?>
 
     <script src="script.js"></script>

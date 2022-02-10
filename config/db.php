@@ -1,45 +1,51 @@
 <?php
 
 $data = array(
-    "server" => "172.16.98.142",
-    "db" => "SRRMS",
-    "user" => "sa",
-    "password" => "Kiss@@33",
+    "server" => "",
+    "db" => "",
+    "user" => "",
+    "password" => "",
 );
 
 $data2 = array(
-    "server" => "172.16.98.142",
-    "db" => "NORMEXT",
-    "user" => "sa",
-    "password" => "Kiss@@33",
+    "server" => "",
+    "db" => "",
+    "user" => "",
+    "password" => "",
 );
 
 $data3 = array(
-    "server" => "172.16.98.142",
-    "db" => "PSA66",
-    "user" => "sa",
-    "password" => "Kiss@@33",
+    "server" => "",
+    "db" => "",
+    "user" => "",
+    "password" => "",
 );
 
 $data4 = array(
-    "server" => "172.16.98.142",
-    "db" => "ZSAsscess",
-    "user" => "sa",
-    "password" => "Kiss@@33",
+    "server" => "",
+    "db" => "",
+    "user" => "",
+    "password" => "",
 );
 
 $data5 = array(
-    "server" => "172.16.98.142",
-    "db" => "HoN",
-    "user" => "sa",
-    "password" => "Kiss@@33",
+    "server" => "",
+    "db" => "",
+    "user" => "",
+    "password" => "",
 );
 
 $data6 = array(
-    "server" => "172.16.98.142",
-    "db" => "SRUtilities",
-    "user" => "sa",
-    "password" => "Kiss@@33",
+    "server" => "",
+    "db" => "",
+    "user" => "",
+    "password" => "",
+);
+$data7 = array(
+    "server" => "",
+    "db" => "",
+    "user" => "",
+    "password" => "",
 );
 
 
@@ -50,6 +56,7 @@ try {
     $fp_connect = new PDO("sqlsrv:server=" . $data4["server"] . "; database=" . $data4["db"], $data4["user"], $data4["password"]);
     $hon_connect = new PDO("sqlsrv:server=" . $data5["server"] . "; database=" . $data5["db"], $data5["user"], $data5["password"]);
     $srut_connect = new PDO("sqlsrv:server=" . $data6["server"] . "; database=" . $data6["db"], $data6["user"], $data6["password"]);
+    $irs_connect = new PDO("sqlsrv:server=" . $data7["server"] . "; database=" . $data7["db"], $data7["user"], $data7["password"]);
 
     $rms_connect->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $norm_connect->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
@@ -57,6 +64,7 @@ try {
     $fp_connect->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $hon_connect->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     $srut_connect->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $irs_connect->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
     
     //echo 'Connect pass';
 } catch (Exception $ex) {

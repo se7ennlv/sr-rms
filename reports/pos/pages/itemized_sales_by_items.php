@@ -26,7 +26,7 @@ $posName = $_POST['posName'];
             <th colspan="6" data-align="left"><strong style="color: red">Itemized Sales by Items</strong></th>
         </tr>
         <tr>
-            <th colspan="6" data-align="left">Period [ <?= $fromDate; ?> To <?= $toDate; ?> ]&emsp;Printed At:&emsp;<?= date("Y-m-d h:i:s A"); ?>&emsp;Printed By:&emsp;<?= $_SESSION['EmpFname']; ?>&ensp;<?= $_SESSION['EmpLname']; ?></th>
+            <th colspan="6" data-align="left">Period [ <?= $fromDate; ?> To <?= $toDate; ?> ]&emsp;Printed At:&emsp;<?= date("Y-m-d h:i:s A"); ?>&emsp;Printed By:&emsp;<?= $_SESSION['fname']; ?>&ensp;<?= $_SESSION['lname']; ?></th>
         </tr>
         <tr>
             <th colspan="6" data-align="left">
@@ -63,7 +63,9 @@ $posName = $_POST['posName'];
         minimumFractionDigits: 2
     })
 
-  
+    function totalTextFormatter(data) {
+        return '<strong>Grand Total</strong>';
+    }
 
     function sumFormatter(data) {
         var field = this.field;

@@ -7,7 +7,7 @@ try {
     $stmt = $hon_connect->prepare($sql);
     $stmt->execute();
 
-    $sql1 = "SELECT * FROM dbo.ReportModules WHERE RGroupID = '{$group_id}'";
+    $sql1 = "SELECT * FROM dbo.ReportModules WHERE RGroupID = '{$group_id}'  AND RMIsActive = 1";
     $stmt1 = $rms_connect->prepare($sql1);
     $stmt1->execute();
     $dataArray = array();
@@ -37,6 +37,7 @@ $hon_connect = null;
         <?php include '../../header.php'; ?>
 
         <div class="content-wrapper" id="mainContent">
+
             <section class="content-header">
                 <h1>
                     SPA Report
@@ -70,13 +71,12 @@ $hon_connect = null;
                                     <?php }
                                     } ?>
                                 </form>
-
-                                <div class="tabel table-responsive" id="tableRespone">
-
-                                </div>
+                                <section id="tabs" class="project-tab">
+                                    <div class="tabel table-responsive" id="tableRespone">
+                                    </div>
+                                </section>
                             </div>
                         </div>
-
                     </div>
                 </div>
             </section>
@@ -88,7 +88,7 @@ $hon_connect = null;
 
     <?php include '../../footer.php' ?>
 
-    <script src="script.js"></script>
+    <script src="script.js?v=1.0.2"></script>
 
     <script type="text/javascript">
         function dateFormat(value, row, index) {

@@ -14,7 +14,7 @@ try {
             FROM Users
             INNER JOIN Roles ON UserRoleID = RoleID
             INNER JOIN Departments ON UserDeptID = DeptID
-            WHERE UserUsername = ? AND UserPassword = ? ";
+            WHERE UserUsername = ? AND UserPassword = ? AND UserIsActive = 1";
 
     $params = array($usr, $pwd);
     $stmt = $rms_connect->prepare($sql);
@@ -36,7 +36,7 @@ try {
         $_SESSION['roleID'] = $result['RoleID'];
         $_SESSION['roleName'] = $result['RoleName'];
         $_SESSION['createdAt'] = $result['UserCreatedAt'];
-        $_SESSION['roleModules'] = $result['roleModules'];
+        $_SESSION['roleModules'] = $result['UserReportModules'];
 
         echo json_encode(array(
             "status" => "success",

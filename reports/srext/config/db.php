@@ -2,7 +2,7 @@
 
 $data = array(
     "server" => "172.16.98.142",
-    "db" => "RMS",
+    "db" => "SRRMS",
     "user" => "sa",
     "password" => "Kiss@@33",
 );

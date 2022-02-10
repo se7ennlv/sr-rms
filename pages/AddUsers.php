@@ -18,7 +18,7 @@ try {
         $dataArray[] = $row;
     }
 
-    $sql4 = "SELECT * FROM ReportModules WHERE RMStatus = 1";
+    $sql4 = "SELECT * FROM ReportModules WHERE RMIsActive = 1";
     $stmt4 = $rms_connect->prepare($sql4);
     $stmt4->execute();
     $dataArray1 = array();

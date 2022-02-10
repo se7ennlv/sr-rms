@@ -7,13 +7,13 @@
         <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
             <span class="sr-only">Toggle navigation</span>
         </a>
-        <a href="http://172.16.98.171/rms_dev/" class="pull-left" style="margin-top: 15px; color: #fff">
+        <a href="http://172.16.98.171/rms/" class="pull-left" style="margin-top: 15px; color: #fff">
             <i class="fa fa-home"></i> Home
         </a>
         <div class="navbar-custom-menu"> 
             <ul class="nav navbar-nav">
                 <li class="dropdown user user-menu">
-                    <a href="http://172.16.98.171/rms_dev/controllers/logout.php" class="pull-right">
+                    <a href="http://172.16.98.171/rms/controllers/logout.php" class="pull-right">
                         <i class="fa fa-sign-out"></i> Sign out
                     </a>
                     <a href="#" class="dropdown-toggle pull-right" data-toggle="dropdown">

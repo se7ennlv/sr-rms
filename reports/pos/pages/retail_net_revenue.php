@@ -8,37 +8,53 @@ $posID = $_POST['posID'];
 $posName = $_POST['posName'];
 ?>
 
-<table id="myTable" class="table table-bordered table-striped" 
-       data-page-size="All"
-       data-page-list="[10, 25, 50, 100, ALL]"
-       data-height="650"
-       data-show-export="true"
-       >
+<table id="myTable" class="table table-bordered table-striped" data-page-size="All" data-page-list="[10, 25, 50, 100, ALL]" data-height="650" data-show-export="true">
     <thead>
         <tr>
             <th colspan="14"><strong style="color: red">Cross Outlet Net Revenue Report</strong></th>
         </tr>
         <tr>
-            <th colspan="14">Period [ <?= $fromDate; ?> To <?= $toDate; ?> ]&emsp;Printed At:&emsp;<?= date("Y-m-d h:i:s A"); ?> &emsp;Printed By: &emsp;<?= $_SESSION['EmpFname']; ?>&ensp;<?= $_SESSION['EmpLname']; ?></th>
+            <th colspan="14">Period [ <?= $fromDate; ?> To <?= $toDate; ?> ]&emsp;Printed At:&emsp;<?= date("Y-m-d h:i:s A"); ?> &emsp;Printed By: &emsp;<?= date("Y-m-d h:i:s A"); ?>&emsp;Printed By:&emsp;<?= $_SESSION['fname']; ?>&ensp;<?= $_SESSION['lname']; ?></th>
         </tr>
-        <tr><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th><th></th></tr>
+        <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
     </thead>
     <tbody>
         <tr>
-            <td colspan="14"><label style="color: green; font-size: 16px;">Outlet: <?php if($posID <= 0){echo 'Please Select Outlet'; }else{echo $posName;}?></label></td>
+            <td colspan="14"><label style="color: green; font-size: 16px;">Outlet: <?php if ($posID <= 0) {
+                                                                                        echo 'Please Select Outlet';
+                                                                                    } else {
+                                                                                        echo $posName;
+                                                                                    } ?></label></td>
         </tr>
-        <tr><td colspan="14"><strong style="color: red; ">REVENUE BY PERIOD</strong></td></tr>
+        <tr>
+            <td colspan="14"><strong style="color: red; ">REVENUE BY PERIOD</strong></td>
+        </tr>
         <tr>
         <tr>
             <td class="text-nowrap text-right"><strong>Meal Period</strong></td>
             <td class="text-nowrap text-center"><strong>Payment</strong></td>
             <td class="text-nowrap text-center"><strong>Covers</strong></td>
             <td class="text-nowrap text-center"><strong>No Of Check</strong></td>
-            <td class="text-nowrap text-center"><strong>Retail</strong></td> 
-            <td class="text-nowrap text-center"><strong>Retail-Liquor</strong></td> 
-            <td class="text-nowrap text-center"><strong>Retail-Logo Item</strong></td> 
-            <td class="text-nowrap text-center"><strong>Retail-Refill Card</strong></td> 
-            <td class="text-nowrap text-center"><strong>Retail-Mobile SIM</strong></td>    
+            <td class="text-nowrap text-center"><strong>Retail</strong></td>
+            <td class="text-nowrap text-center"><strong>Retail-Liquor</strong></td>
+            <td class="text-nowrap text-center"><strong>Retail-Logo Item</strong></td>
+            <td class="text-nowrap text-center"><strong>Retail-Refill Card</strong></td>
+            <td class="text-nowrap text-center"><strong>Retail-Mobile SIM</strong></td>
             <td class="text-nowrap text-center"><strong>Retail-Tobacco</strong></td>
             <td class="text-nowrap text-center"><strong>Retail-Consignment</strong></td>
             <td class="text-nowrap text-center"><strong>Retail-Other</strong></td>
@@ -67,7 +83,7 @@ $posName = $_POST['posName'];
         $discTotal = 0;
 
         while ($resPeriod = $stmtPeriod->fetch(PDO::FETCH_ASSOC)) {
-            ?>
+        ?>
             <?php
             $sqlByPeriod = "WITH cte AS(
                             SELECT TOP(100)PERCENT
@@ -130,7 +146,7 @@ $posName = $_POST['posName'];
             $stmtByPeriod->execute();
 
             while ($resByPeriod = $stmtByPeriod->fetch(PDO::FETCH_ASSOC)) {
-                ?>
+            ?>
 
                 <tr>
                     <td class="text-right"><strong><?= $resPeriod['PeriodName']; ?></strong></td>
@@ -148,7 +164,6 @@ $posName = $_POST['posName'];
                     <td class="text-right"><?= $resByPeriod['TaxTotal']; ?></td>
                     <td class="text-right"><?= $resByPeriod['DiscTotal']; ?></td>
                 </tr>
-
                 <?php
                 $paymentTotal += $resByPeriod['Payment'];
                 $coverTotal += $resByPeriod['Cover'];
@@ -185,7 +200,9 @@ $posName = $_POST['posName'];
             <td class="text-right"><strong><?= number_format($taxTotal, 2) ?></strong></td>
             <td class="text-right"><strong><?= number_format($discTotal, 2) ?></strong></td>
         </tr>
-        <tr><td colspan="12"><strong style="color: red; ">REVENUE BY PAYMENT</strong></td></tr>
+        <tr>
+            <td colspan="12"><strong style="color: red; ">REVENUE BY PAYMENT</strong></td>
+        </tr>
         <tr>
             <td><strong>Pay Type</strong></td>
             <td class="text-center"><strong>Payment</strong></td>
@@ -194,7 +211,13 @@ $posName = $_POST['posName'];
             <td class="text-center"><strong>Lunch</strong></td>
             <td class="text-center"><strong>Dinner</strong></td>
             <td class="text-center"><strong>Supper</strong></td>
-            <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
         </tr>
 
         <?php
@@ -255,7 +278,7 @@ $posName = $_POST['posName'];
         $supTotal = 0;
 
         while ($resPayType = $stmtPayType->FETCH(PDO::FETCH_ASSOC)) {
-            ?>
+        ?>
 
             <?php
             $sqlByPayType = "WITH cte AS(
@@ -317,7 +340,7 @@ $posName = $_POST['posName'];
             $stmtByPayType->execute();
 
             while ($resByPayType = $stmtByPayType->FETCH(PDO::FETCH_ASSOC)) {
-                ?>
+            ?>
 
                 <tr>
                     <td><?= $resPayType['PaymentTypeName']; ?></td>
@@ -327,7 +350,13 @@ $posName = $_POST['posName'];
                     <td class="text-right"><?= $resByPayType['Lunch']; ?></td>
                     <td class="text-right"><?= $resByPayType['Dinner']; ?></td>
                     <td class="text-right"><?= $resByPayType['Supper']; ?></td>
-                    <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
                 </tr>
 
                 <?php
@@ -351,7 +380,13 @@ $posName = $_POST['posName'];
             <td class="text-right"><strong><?= number_format($lunTotal, 2) ?></td>
             <td class="text-right"><strong><?= number_format($dinTotal, 2) ?></td>
             <td class="text-right"><strong><?= number_format($supTotal, 2) ?></td>
-            <td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
         </tr>
 
         <?php $conn = NULL; ?>
@@ -375,4 +410,3 @@ $posName = $_POST['posName'];
         }
     });
 </script>
-

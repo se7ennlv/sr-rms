@@ -11,25 +11,32 @@ try {
     $roleID = trim($_SESSION['roleID']);
     $orgCode = $_GET['orgCode'];
     
-    if ($deptID == 1) {
+    if ($deptID == 21) {
+        $sql = "SELECT *
+            FROM [ZSAsscess].[dbo].[RawData]
+            WHERE OrgID IN(5, 12, 37)
+            AND [Date] BETWEEN CONVERT(DATE,'{$fromDate}')  AND CONVERT(DATE,'{$fromDate}')
+            AND (Station LIKE 'SAVSEC%' OR Station LIKE '%Welcome%') AND LocationID = 0
+            ORDER BY EmpID, [Date], CONVERT(TIME, [Time]) ASC ";
+    }else if ($deptID == 1) {
         $sql = "SELECT *
             FROM [ZSAsscess].[dbo].[RawData]
             WHERE OrgCode IN('ADMIN', 'FO')
             AND [Date] BETWEEN CONVERT(DATE,'{$fromDate}')  AND CONVERT(DATE,'{$fromDate}')
-            AND (Station LIKE 'SAVSEC%' OR Station LIKE '%Welcome%')
+            AND (Station LIKE 'SAVSEC%' OR Station LIKE '%Welcome%') AND LocationID = 0
             ORDER BY EmpID, [Date], CONVERT(TIME, [Time]) ASC ";
     }else if ($roleID == '1' || $roleID == '2') {
         if($orgCode == 'all'){
             $sql = "SELECT *
             FROM [ZSAsscess].[dbo].[RawData]
             WHERE [Date] BETWEEN CONVERT(DATE,'{$fromDate}')  AND CONVERT(DATE,'{$toDate}')
-            AND (Station LIKE 'SAVSEC%' OR Station LIKE '%Welcome%')
+            AND (Station LIKE 'SAVSEC%' OR Station LIKE '%Welcome%') AND LocationID = 0
             ORDER BY EmpID, [Date], CONVERT(TIME, [Time]) ASC ";
         } else {
             $sql = "SELECT *
             FROM [ZSAsscess].[dbo].[RawData]
             WHERE [Date] BETWEEN CONVERT(DATE,'{$fromDate}')  AND CONVERT(DATE,'{$toDate}')
-            AND OrgCode = '{$orgCode}' AND (Station LIKE 'SAVSEC%' OR Station LIKE '%Welcome%')
+            AND OrgCode = '{$orgCode}' AND (Station LIKE 'SAVSEC%' OR Station LIKE '%Welcome%') AND LocationID = 0
             ORDER BY EmpID, [Date], CONVERT(TIME, [Time]) ASC ";
         }
     } else {
@@ -39,7 +46,7 @@ try {
             FROM [ZSAsscess].[dbo].[RawData]
             WHERE [Date] BETWEEN CONVERT(DATE,'{$fromDate}')  AND CONVERT(DATE,'{$toDate}') 
             AND OrgCode = '{$orgCode}'
-            AND (Station LIKE 'SAVSEC%' OR Station LIKE '%Welcome%')
+            AND (Station LIKE 'SAVSEC%' OR Station LIKE '%Welcome%') AND LocationID = 0
             ORDER BY EmpID, [Date], CONVERT(TIME, [Time]) ASC ";
     }
 

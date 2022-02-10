@@ -45,6 +45,18 @@ $("#FrmSpl").on("submit", function (e) {
 
     e.preventDefault();
 });
+$("#FrmAl").on("submit", function (e) {
+    if ($("#FrmAl").smkValidate()) {
+        $(".modal").modal("hide");
+
+        $.post("./pages/al_lv_account_update.php", $("#FrmAl").serialize()
+                , function (response) {
+                    $("#tblRespone").html(response);
+                });
+    }
+
+    e.preventDefault();
+});
 
 $("#FrmSearchLeave").on("submit", function (e) {
 
@@ -56,7 +68,6 @@ $("#FrmSearchLeave").on("submit", function (e) {
                     $("#tblRespone").html(response);
                 });
     }
-
     e.preventDefault();
 });
 

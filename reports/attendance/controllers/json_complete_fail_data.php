@@ -12,15 +12,17 @@ try {
     $orgCode = $_GET['orgCode'];
     
     if ($deptID == '1') {
-        $sql = "SELECT * FROM NORMEXT.[dbo].[SevenAttdComplete] WHERE ([WorkDay] BETWEEN CONVERT(DATE,'{$fromDate}') AND CONVERT(DATE,'{$toDate}')) AND OrgCode IN('{$deptCode}', 'FRONT OFFICE') AND ExemStatus IS NULL";
+        $sql = "SELECT * FROM NORMEXT.[dbo].[RMSAttdCompleted] WHERE ([WorkDay] BETWEEN CONVERT(DATE,'{$fromDate}') AND CONVERT(DATE,'{$toDate}')) AND OrgCode IN('{$deptCode}', 'FRONT OFFICE') AND ExemStatus IS NULL";
+    }else if($deptID == 21){
+        $sql = "SELECT * FROM NORMEXT.[dbo].[RMSAttdCompleted] WHERE ([WorkDay] BETWEEN CONVERT(DATE,'{$fromDate}') AND CONVERT(DATE,'{$toDate}')) AND OrgID IN(5, 12, 37) AND ExemStatus IS NULL";
     } else if ($roleID == '1' || $roleID == '2') {
         if($orgCode == 'all'){
-            $sql = "SELECT * FROM NORMEXT.[dbo].[SevenAttdComplete] WHERE ([WorkDay] BETWEEN CONVERT(DATE,'{$fromDate}') AND CONVERT(DATE,'{$toDate}')) AND ExemStatus IS NULL";
+            $sql = "SELECT * FROM NORMEXT.[dbo].[RMSAttdCompleted] WHERE ([WorkDay] BETWEEN CONVERT(DATE,'{$fromDate}') AND CONVERT(DATE,'{$toDate}')) AND ExemStatus IS NULL";
         } else {
-            $sql = "SELECT * FROM NORMEXT.[dbo].[SevenAttdComplete] WHERE ([WorkDay] BETWEEN CONVERT(DATE,'{$fromDate}') AND CONVERT(DATE,'{$toDate}')) AND OrgCode = '{$orgCode}' AND ExemStatus IS NULL";
+            $sql = "SELECT * FROM NORMEXT.[dbo].[RMSAttdCompleted] WHERE ([WorkDay] BETWEEN CONVERT(DATE,'{$fromDate}') AND CONVERT(DATE,'{$toDate}')) AND OrgCode = '{$orgCode}' AND ExemStatus IS NULL";
         }
     } else {
-        $sql = "SELECT * FROM NORMEXT.[dbo].[SevenAttdComplete] WHERE ([WorkDay] BETWEEN CONVERT(DATE,'{$fromDate}') AND CONVERT(DATE,'{$toDate}')) AND OrgCode = '{$deptCode}' AND ExemStatus IS NULL";
+        $sql = "SELECT * FROM NORMEXT.[dbo].[RMSAttdCompleted] WHERE ([WorkDay] BETWEEN CONVERT(DATE,'{$fromDate}') AND CONVERT(DATE,'{$toDate}')) AND OrgCode = '{$deptCode}' AND ExemStatus IS NULL";
     }
 
 

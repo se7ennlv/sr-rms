@@ -33,7 +33,7 @@ try {
                                                 [UserRoleID], 
                                                 [UserCreatedAt],
                                                 [UserReportGroups],
-                                                [roleModules])
+                                                [UserReportModules])
                                     VALUES (?, ?, ?, ?, ?, ?, ?, 1, ?, GETDATE(),?,?)";
     $stmt = $rms_connect->prepare($sql);
     $stmt->execute($params);

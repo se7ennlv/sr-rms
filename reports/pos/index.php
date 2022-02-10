@@ -4,7 +4,7 @@ include './config/db.php';
 try {
     include '../../config/db.php';
     $group_id =  $_GET['group_id'];
-    $sql1 = "SELECT * FROM dbo.ReportModules WHERE RGroupID = '{$group_id}' AND RMStatus = 1";
+    $sql1 = "SELECT * FROM dbo.ReportModules WHERE RGroupID = '{$group_id}' AND RMIsActive = 1";
     $stmt1 = $rms_connect->prepare($sql1);
     $stmt1->execute();
     $dataArray = array();
@@ -26,10 +26,8 @@ try {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>POS Reports</title>
-
     <?php include '../../head.php' ?>
 </head>
-
 <body class="hold-transition skin-green sidebar-collapse">
     <div class="wrapper">
         <?php include '../../header.php'; ?>
@@ -83,7 +81,7 @@ try {
                                                     foreach ($dataArray as $menu) { ?>
                                                         <?php foreach ($users as $user) { ?>
                                                             <?php if ($menu['RMID'] == $user) { ?>
-                                                                <button type="button" class="btn btn-custom" onclick="<?= $menu['RMAction']; ?>" ><?= $menu['RMName']; ?> </button>
+                                                                <button type="button" class="<?= $menu['RMBtnClass']; ?>" onclick="<?= $menu['RMAction']; ?>"><?= $menu['RMName']; ?> </button>
                                                             <?php } ?>
                                                     <?php }
                                                     } ?>
@@ -127,11 +125,3 @@ try {
         $("#posName").val($("#posID option:selected").text());
     });
 </script>
-
-<style>
-    .btn-custom {
-        background-color: #ffffff;
-        color: #444;
-        border-color: #00a65a;
-    }
-</style>

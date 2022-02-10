@@ -29,14 +29,15 @@ try {
             </div>
             <div class="login-box-body">
                 <p class="login-box-msg">Report Management System (v.1.0.3)</p>
+                <!-- 0 -->
                 <?php if ($res == 0) { ?>
                     <h2 style="text-align: center">Sorry!</h2>
-                    <h6 style="text-align: center">The system will be available soon</h6>
+                    <h6 style="text-align: center">Sorry HR is running the payroll, The system will be available until  payroll complete</h6>
                 <?php } else { ?>
 
                     <form name="frmLogin" id="frmLogin"  method="POST">
                         <div class="form-group has-feedback">
-                            <input type="text" name="Username" class="form-control" placeholder="Username EX:(sev.nin)" required>
+                            <input type="text" name="Username" class="form-control" placeholder="Employee ID (20xxxx)" required>
                             <span class="fa fa-user form-control-feedback"></span>
                         </div>
                         <div class="form-group has-feedback">

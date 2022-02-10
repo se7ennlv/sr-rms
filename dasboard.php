@@ -5,9 +5,11 @@ try {
     $stmt = $rms_connect->prepare($sql);
     $stmt->execute();
     $dataArray = array();
+
     while ($res = $stmt->fetch(PDO::FETCH_NUM)) {
         $dataArray[] = $res;
     }
+    
 } catch (Exception $ex) {
     echo $ex->getMessage();
 }
@@ -21,6 +23,7 @@ $rms_connect = null;
                     <div class="row">
                         <?php
                         $datas = array(1, 3, 4);
+                        
                         foreach ($dataArray as $menu) { ?>
                             <div class="col-md-3">
                                 <div class="panel panel-default">
@@ -41,6 +44,7 @@ $rms_connect = null;
                             </div>
                         <?php
                         } ?>
+                       
                     </div>
                 </div>
             </div>

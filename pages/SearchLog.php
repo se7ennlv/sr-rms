@@ -16,7 +16,7 @@
             <th data-field="EmpFullName" data-sortable="true" class="text-nowrap">Emp Name</th>
             <th data-field="DeptName" data-sortable="true" class="text-nowrap">Department</th>
             <th data-field="RoleName" data-sortable="true" class="text-nowrap">User Level</th>
-            <th data-field="LogRptAccess" data-sortable="true" class="text-nowrap">System Access</th>
+            <th data-field="RGroupDesc" data-sortable="true" class="text-nowrap">System Access</th>
             <th data-field="LogAccessTime" data-sortable="true" class="text-nowrap">System Access Time</th>
         </tr>
     </thead>

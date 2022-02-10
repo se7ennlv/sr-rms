@@ -39,7 +39,7 @@ function reportAction(id, urls) {
 				if (value == id) {
 					window.location.href = urls + '?group_id=' + id + '';
 					$.unblockUI();
-					$.post('./controllers/log.php?userId=' + userId + '&rptName=' + rptName);
+					$.post('./controllers/log.php?userId=' + userId + '&rptName=' + id + '');
 					condition = true;
 				}
 			});

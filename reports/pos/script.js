@@ -4,7 +4,8 @@ $('.datepicker').datepicker({
     autoclose: 'true'
 });
 
-var dateInterval = function (date1, date2) {
+
+var dateInterval = function(date1, date2) {
     dt1 = new Date(date1);
     dt2 = new Date(date2);
 
@@ -17,7 +18,7 @@ function Action1() {
             url: "./pages/itemized_sales_by_items.php",
             data: $("#frmPos").serialize(),
             type: "POST",
-            success: function (data) {
+            success: function(data) {
                 $("#tblRespone").html(data);
             }
         });
@@ -32,7 +33,7 @@ function Action2() {
             url: "./pages/itemized_sale_by_meal_period.php",
             data: $("#frmPos").serialize(),
             type: "POST",
-            success: function (data) {
+            success: function(data) {
                 $("#tblRespone").html(data);
             }
         });
@@ -59,7 +60,7 @@ function Action3() {
             url: $url,
             data: $("#frmPos").serialize(),
             type: "POST",
-            success: function (data) {
+            success: function(data) {
                 $("#tblRespone").html(data);
             }
         });
@@ -74,7 +75,7 @@ function Action4() {
             url: "./pages/kot_voided.php",
             data: $("#frmPos").serialize(),
             type: "POST",
-            success: function (data) {
+            success: function(data) {
                 $("#tblRespone").html(data);
             }
         });
@@ -89,7 +90,7 @@ function Action5() {
             url: "./pages/house_check_oc.php",
             data: $("#frmPos").serialize(),
             type: "POST",
-            success: function (data) {
+            success: function(data) {
                 $("#tblRespone").html(data);
             }
         });
@@ -104,7 +105,7 @@ function Action6() {
             url: "./pages/oc.php",
             data: $("#frmPos").serialize(),
             type: "POST",
-            success: function (data) {
+            success: function(data) {
                 $("#tblRespone").html(data);
             }
         });
@@ -131,7 +132,28 @@ function Action7() {
             url: $url,
             data: $("#frmPos").serialize(),
             type: "POST",
-            success: function (data) {
+            success: function(data) {
+                $("#tblRespone").html(data);
+            }
+        });
+    }
+
+    return;
+
+}
+
+function RevenueDaily() {
+    var $posID = $("#posID").val();
+    console.log(posID);
+
+    if ($("#frmPos").smkValidate()) {
+        var $url = "";
+        $url = "./pages/revenue_report_by_outlet.php";
+        $.ajax({
+            url: $url,
+            data: $("#frmPos").serialize(),
+            type: "POST",
+            success: function(data) {
                 $("#tblRespone").html(data);
             }
         });
@@ -140,8 +162,9 @@ function Action7() {
     return;
 }
 
-$(document).ajaxStart(function () {
-    $.blockUI({message: '\n\
+$(document).ajaxStart(function() {
+    $.blockUI({
+        message: '\n\
                     <span style="font-size: 16px">Please wait, calculating...</span>\n\
                     <div class="progress" style="border-radius: 0px; margin-top: 5px;">\n\
                         <div class="progress-bar progress-bar-striped active" \n\

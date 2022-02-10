@@ -72,24 +72,27 @@ try {
 
             <?php while ($res2 = $stmt2->fetch(PDO::FETCH_ASSOC)) { ?>
                 <?php
-                $sql5 = "SELECT LVLEAVEREQ_LEAVECODE,
-                                SUM(
-                                    CASE 
-                                        WHEN CONVERT(DATE, '{$fromDate}') > CONVERT(DATE, LVLEAVEREQ_BDATE) THEN 
-                                            DATEDIFF(DAY, CONVERT(DATE, '{$fromDate}'), CONVERT(DATE, LVLEAVEREQ_EDATE)) + 1
-                                        WHEN CONVERT(DATE, '{$toDate}') < CONVERT(DATE, LVLEAVEREQ_EDATE) THEN 
-                                            DATEDIFF(DAY, CONVERT(DATE, LVLEAVEREQ_BDATE), CONVERT(DATE, '{$toDate}')) + 1 
-                                        ELSE 
-                                            DATEDIFF(DAY, CONVERT(DATE, LVLEAVEREQ_BDATE), CONVERT(DATE, LVLEAVEREQ_EDATE)) + 1
-                                    END
-                                ) AS countDay
-
-                            FROM  [PSA66].[dbo].[LVLEAVEREQ] 
-                            WHERE [LVLEAVEREQ_EMPID] = '{$empID}'
-                            AND (CONVERT(DATE, LVLEAVEREQ_BDATE) BETWEEN '{$fromDate}' AND '{$toDate}')
-                            AND LVLEAVEREQ_LEAVECODE = '{$res2['LvCode']}'
-                            AND LVLEAVEREQ_STATUS NOT IN ('0', '3', '4')
-                            GROUP BY LVLEAVEREQ_LEAVECODE ";
+                $sql5 = "
+                WITH LeaveExtract AS (
+                    SELECT 
+                    HREMP_EMPCODE AS EmpID, 
+                    HREMP_ORG AS OrgID,
+                    CONVERT(DATE, ATWKCALDEMP_WKDATE) AS RosterDate, 
+                    ATWKCALDEMP_SHIFTCODE AS RosterShiftCode,
+                    LVLEAVEBANK_LEAVECODE AS LeaveCode,
+                    CONVERT(DATE, LVLEAVEBANK_ACTDATE) AS LeaveActiveDate,
+                    LVLEAVEBANK_REQID AS LeaveNo
+                    FROM ATWKCALDEMP
+                    INNER JOIN HREMP ON ATWKCALDEMP_EMPID = HREMP_EMPCODE
+                    LEFT JOIN (
+                                SELECT LVLEAVEBANK_EMPID, LVLEAVEBANK_ACTDATE, LVLEAVEBANK_REQID, LVLEAVEBANK_LEAVECODE
+                                FROM LVLEAVEBANK 
+                                WHERE LVLEAVEBANK_TYPE = 2 AND LVLEAVEBANK_INACTIVE = 0) AS Leave 
+                    ON CONVERT(DATE, ATWKCALDEMP_WKDATE) = CONVERT(DATE, LVLEAVEBANK_ACTDATE) AND HREMP_EMPID = LVLEAVEBANK_EMPID
+                    WHERE HREMP_EMPCODE = '{$empID}' AND CONVERT(DATE, ATWKCALDEMP_WKDATE) BETWEEN '{$fromDate}' AND '{$toDate}' AND (ATWKCALDEMP_SHIFTCODE NOT LIKE 'C%' AND ATWKCALDEMP_SHIFTCODE NOT LIKE 'DO' AND ATWKCALDEMP_SHIFTCODE NOT LIKE 'OS')
+                )
+                SELECT COUNT(*) AS countDay FROM LeaveExtract WHERE EmpID = '{$empID}' AND (RosterShiftCode = '{$res2['LvCode']}' OR LeaveCode = '{$res2['LvCode']}') 
+                ";
 
                 $stmt5 = $psa_connect->prepare($sql5);
                 $stmt5->execute();

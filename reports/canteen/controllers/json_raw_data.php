@@ -8,10 +8,11 @@ try {
     $toDate = $_GET['toDate'];
     $station = $_GET['station'];
     
-    $sql = "SELECT * FROM [ZSAsscess].[dbo].[CanteenData]
+    $sql = "SELECT * 
+            FROM CanteenRawData
             WHERE Station LIKE '{$station}' 
-            AND [Datetime] BETWEEN CONVERT(DATE,'{$fromDate}')  AND CONVERT(DATE,'{$toDate}')
-            ORDER BY [Datetime], Department ASC ";
+            AND Dates BETWEEN '{$fromDate}' AND '{$toDate}'
+            ORDER BY Dept, EmpID, Dates, Periods ASC";
     $stmt = $fp_connect->prepare($sql);
     $stmt->execute();
 

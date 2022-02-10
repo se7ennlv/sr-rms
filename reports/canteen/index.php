@@ -9,26 +9,13 @@ try {
     $stmt = $fp_connect->prepare($sql);
     $stmt->execute();
 
-    $group_id =  $_GET['group_id'];
-
-    $sql1 = "SELECT * FROM dbo.ReportModules WHERE RGroupID = '{$group_id}'";
-    $stmt1 = $rms_connect->prepare($sql1);
-    $stmt1->execute();
-
-    $dataArray = array();
-
-    while ($row = $stmt1->fetch(PDO::FETCH_ASSOC)) {
-        $dataArray[] = $row;
-    }
-
-    echo  $sql1;
-
 } catch (PDOException $e) {
     echo $e->getMessage();
 }
 
 $fp_connect = NULL;
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -68,7 +55,7 @@ $fp_connect = NULL;
                                                 </div>
                                                 <div class="form-group">
                                                     <label for="">Station:</label>
-                                                    <select class="form-control" name="station">
+                                                    <select class="form-control" name="station" id="picker">
                                                         <?php
                                                         while ($sel = $stmt->fetch(PDO::FETCH_NUM)) {
                                                             echo "<option value='$sel[1]'>$sel[1]</option>";
@@ -80,21 +67,10 @@ $fp_connect = NULL;
                                             <hr style="margin: 7px">
                                             <section class="text-center">
                                                 <div class="form-group">
-                                                    <?php
-                                                    $users =  explode(",", $_SESSION['roleModules']);
-                                                    
-                                                    foreach ($dataArray as $menu) { ?>
-                                                        <?php foreach ($users as $user) { ?>
-                                                            <?php if ($menu['RMID'] == $user) { ?>
-                                                                <div class="form-group">
-                                                                    <button type="button" class="btn btn-custom btn-sm" id="<?= $menu['RMAction']; ?>"><i class="fa fa-search"></i> <?= $menu['RMName']; ?> </button>
-                                                                </div>
-                                                            <?php } ?>
-                                                    <?php }
-                                                    } ?>
-                                                    <!-- <button type="button" class="btn btn-primary" id="btnRawReport"><i class="fa fa-bars"></i> Raw Report</button>
-                                                    <button type="button" class="btn btn-info" id="btnTransactionReport"><i class="fa fa-list-ul"></i> Transaction Report</button>
-                                                    <button type="button" class="btn btn-warning" id="btnSumaryReport"><i class="fa fa-th-large"></i> Sumary Report</button> -->
+                                                    <button type="button" class="btn btn-default" id="btnRawReport"><i class="fa fa-search"></i> Raw Data</button>
+                                                    <button type="button" class="btn btn-default" id="btnCountByPeriodReport"><i class="fa fa-search"></i> Count Person by Periods</button>
+                                                    <button type="button" class="btn btn-default" id="btnSumaryReport"><i class="fa fa-search"></i> Dept Summary by Periods</button>
+                                                    <!-- <button type="button" class="btn btn-default" onclick="summaryByPerson();"><i class="fa fa-search"></i> Over (3) Sumary Report</button>  -->
                                                 </div>
                                             </section>
                                         </form>
@@ -117,15 +93,8 @@ $fp_connect = NULL;
 
         <?php include '../../footer.php' ?>
 
-        <script src="script.js"></script>
+        <!-- <script src="script.js?v=1007"></script> -->
 
 </body>
 
 </html>
-<style>
-    .btn-custom {
-        background-color: #ffffff;
-        color: #444;
-        border-color: #00a65a;
-    }
-</style>

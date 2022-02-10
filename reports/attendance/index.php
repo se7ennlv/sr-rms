@@ -87,7 +87,7 @@ try {
                                                     foreach ($dataArray as $menu) { ?>
                                                         <?php foreach ($users as $user) { ?>
                                                             <?php if ($menu['RMID'] == $user) { ?>
-                                                                <button type="button" class="btn btn-custom" onclick="<?= $menu['RMAction']; ?>" data-toggle="tooltip" data-placement="bottom" title="<?= $menu['RMName']; ?>"><?= $menu['RMName']; ?><i class="fa fa-search"></i></button>
+                                                                <button type="button" class="<?= $menu['RMBtnClass']; ?>" onclick="<?= $menu['RMAction']; ?>" data-toggle="tooltip" data-placement="bottom" title="<?= $menu['RMName']; ?>"><i class="<?= $menu['RMIcon']; ?>"></i> <?= $menu['RMName']; ?></button>
                                                             <?php } ?>
                                                     <?php }
                                                     } ?>

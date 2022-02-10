@@ -37,7 +37,7 @@ try {
             <th data-field="Hireday" data-sortable="true" class="text-nowrap" rowspan="2" data-vlign="middle">Hireday</th>
             <th data-field="Position" data-sortable="true" class="text-nowrap" rowspan="2" data-vlign="middle">Position</th>
             <th data-field="Dept" data-sortable="true" class="text-nowrap" rowspan="2" data-vlign="middle">Department</th>
-            <th colspan="14" class="text-nowrap text-center">Leave Type</th>
+            <th colspan="18" class="text-nowrap text-center">Leave Types</th>
             <th data-field="Total" data-sortable="true" class="text-nowrap text-center" rowspan="2" style="color: red" data-vlign="middle">Total</th>
         </tr>
         <tr>
@@ -55,6 +55,10 @@ try {
             <th data-field="UL" data-sortable="true" class="text-nowrap text-center">UL</th>
             <th data-field="WL" data-sortable="true" class="text-nowrap text-center">WL</th>
             <th data-field="XL" data-sortable="true" class="text-nowrap text-center">XL</th>
+            <th data-field="MSO" data-sortable="true" class="text-nowrap text-center">MSO</th>
+            <th data-field="LWP" data-sortable="true" class="text-nowrap text-center">LWP</th>
+            <th data-field="WOP" data-sortable="true" class="text-nowrap text-center">WOP</th>
+            <th data-field="LDL" data-sortable="true" class="text-nowrap text-center">LDL</th>
             
         </tr>     
     </thead>
