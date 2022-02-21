@@ -1,51 +1,51 @@
 <?php
 
 $data = array(
-    "server" => "",
-    "db" => "",
-    "user" => "",
-    "password" => "",
+    "server" => "172.16.98.142",
+    "db" => "SRRMS",
+    "user" => "sa",
+    "password" => "Kiss@@33",
 );
 
 $data2 = array(
-    "server" => "",
-    "db" => "",
-    "user" => "",
-    "password" => "",
+    "server" => "172.16.98.142",
+    "db" => "NORMEXT",
+    "user" => "sa",
+    "password" => "Kiss@@33",
 );
 
 $data3 = array(
-    "server" => "",
-    "db" => "",
-    "user" => "",
-    "password" => "",
+    "server" => "172.16.98.142",
+    "db" => "PSA66",
+    "user" => "sa",
+    "password" => "Kiss@@33",
 );
 
 $data4 = array(
-    "server" => "",
-    "db" => "",
-    "user" => "",
-    "password" => "",
+    "server" => "172.16.98.142",
+    "db" => "ZSAsscess",
+    "user" => "sa",
+    "password" => "Kiss@@33",
 );
 
 $data5 = array(
-    "server" => "",
-    "db" => "",
-    "user" => "",
-    "password" => "",
+    "server" => "172.16.98.142",
+    "db" => "HoN",
+    "user" => "sa",
+    "password" => "Kiss@@33",
 );
 
 $data6 = array(
-    "server" => "",
-    "db" => "",
-    "user" => "",
-    "password" => "",
+    "server" => "172.16.98.142",
+    "db" => "SRUtilities",
+    "user" => "sa",
+    "password" => "Kiss@@33",
 );
 $data7 = array(
-    "server" => "",
-    "db" => "",
-    "user" => "",
-    "password" => "",
+    "server" => "172.16.98.142",
+    "db" => "SAVCOM",
+    "user" => "sa",
+    "password" => "Kiss@@33",
 );
 
 
